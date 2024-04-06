@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // Route imports
+import transactionRoutes from './routes/transactionRoutes';
 import userRoutes from './routes/userRoutes';
 
 dotenv.config();
@@ -21,6 +22,7 @@ mongoose.connect(process.env.MONGODB_URI as string)
 
 // Routes
 app.use('/api/users', userRoutes);
+app.use('/api/transactions', transactionRoutes);
 
 
 export default app;
