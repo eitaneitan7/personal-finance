@@ -1,7 +1,7 @@
 import mongoose, { Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-interface IUser extends Document {
+interface Uuser extends Document {
     username: string;
     password: string;
     email: string;
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // before inserting document check for pass encryption
-userSchema.pre<IUser>('save', async function (next) {
+userSchema.pre<Uuser>('save', async function (next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, 8);
   next();
@@ -27,6 +27,6 @@ userSchema.methods.comparePassword = async function (candidatePassword: string):
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<Uuser>('User', userSchema);
 
 export default User;

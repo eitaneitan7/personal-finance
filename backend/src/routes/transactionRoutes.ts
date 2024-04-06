@@ -1,18 +1,12 @@
+
 import express from 'express';
-import { createTransaction, getTransactions, updateTransaction, deleteTransaction } from '../controllers/transactionController';
+import { getTransactions, createTransaction, updateTransaction, deleteTransaction } from '../controllers/transactionController';
 
 const router = express.Router();
 
-// Route to get all transactions for a user
 router.get('/', getTransactions);
-
-// Route to create a new transaction
-router.post('/', createTransaction);
-
-// Route to update a transaction by its ID
-router.patch('/:id', updateTransaction);
-
-// Route to delete a transaction by its ID
+router.post('/', createTransaction); 
+router.patch('/:id', updateTransaction); 
 router.delete('/:id', deleteTransaction);
 
 export default router;
